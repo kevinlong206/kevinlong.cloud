@@ -1,0 +1,5 @@
+baseURL = "https://kevinlong.cloud/"
+languageCode = "en-us"
+title = "A Sofware Enginering, S.R.E. and DevOps blog"
+theme = "blackburn"
+buildDrafts = true

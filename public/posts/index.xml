@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on A Sofware Enginering, S.R.E. and DevOps blog</title>
+    <link>https://kevinlong.cloud/posts/</link>
+    <description>Recent content in Posts on A Sofware Enginering, S.R.E. and DevOps blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Dec 2021 12:45:19 -0800</lastBuildDate><atom:link href="https://kevinlong.cloud/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Second Post</title>
+      <link>https://kevinlong.cloud/posts/my-second-post/</link>
+      <pubDate>Sun, 26 Dec 2021 12:45:19 -0800</pubDate>
+      
+      <guid>https://kevinlong.cloud/posts/my-second-post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>My First Post</title>
+      <link>https://kevinlong.cloud/posts/my-first-post/</link>
+      <pubDate>Sun, 26 Dec 2021 12:41:16 -0800</pubDate>
+      
+      <guid>https://kevinlong.cloud/posts/my-first-post/</guid>
+      <description>Very cool My first post
+Subheading Do you want to blog? 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26  variable &amp;#34;region&amp;#34; { default = &amp;#34;us-west-2&amp;#34; } variable &amp;#34;myapp_name&amp;#34; { default = &amp;#34;klongapi&amp;#34; } // This DNS zone must already exist in route53 in your AWS account. We reference it, but don&amp;#39;t prosision it with terraform, because it is the one resource that cannot be easily // reprovision after a &amp;#34;terraform destroy&amp;#34; in my case, since my domain is registered with namecheap.</description>
+    </item>
+    
+  </channel>
+</rss>
