@@ -51,11 +51,13 @@ function gc {
 	git commit -m "$commitmsg"
 }
 alias gp='git push'
+alias gpl='git pull'
+alias ga='git add .'
 alias gl='git log'
 alias gm='git merge'
 alias gr='git rebase'
 alias gi='git rebase -i'
 
-# terminal/sheloptions
+# terminal/shell options
 set -o vi
 set bell-style none

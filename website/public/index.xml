@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>A Sofware Enginering, S.R.E. and DevOps blog</title>
+    <title>A Sofware Engineering, S.R.E. and DevOps blog</title>
     <link>https://kevinlong.cloud/</link>
-    <description>Recent content on A Sofware Enginering, S.R.E. and DevOps blog</description>
+    <description>Recent content on A Sofware Engineering, S.R.E. and DevOps blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 26 Dec 2021 12:41:16 -0800</lastBuildDate><atom:link href="https://kevinlong.cloud/index.xml" rel="self" type="application/rss+xml" />
@@ -14,8 +14,8 @@
       
       <guid>https://kevinlong.cloud/posts/ci-cd-terraform-fargate/</guid>
       <description>Background This tutorial aims to cover all the basics involved in setting up cloud infrastructure for continuous delivery of a microservice to AWS Fargate, automating everything, with as few manual steps as possible.
-There is a lot of information to cover, and it is by no means exhaustive, for example it is scoped to a single service and does not cover integration strategies.
-I assume you understand the basics of cloud computing and AWS services, what Terraform is, what a docker container is, etc.</description>
+There is a lot of information to cover, and it is by no means exhaustive.
+I&amp;rsquo;ll assume you understand the basics of cloud computing and AWS services, what Terraform is, what a docker container is, etc.</description>
     </item>
     
   </channel>
