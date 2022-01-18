@@ -6,24 +6,16 @@
     <description>Recent content in Posts on A Sofware Enginering, S.R.E. and DevOps blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Dec 2021 12:45:19 -0800</lastBuildDate><atom:link href="https://kevinlong.cloud/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Dec 2021 12:41:16 -0800</lastBuildDate><atom:link href="https://kevinlong.cloud/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My Second Post</title>
-      <link>https://kevinlong.cloud/posts/my-second-post/</link>
-      <pubDate>Sun, 26 Dec 2021 12:45:19 -0800</pubDate>
-      
-      <guid>https://kevinlong.cloud/posts/my-second-post/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>My First Post</title>
-      <link>https://kevinlong.cloud/posts/my-first-post/</link>
+      <title>Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate</title>
+      <link>https://kevinlong.cloud/posts/ci-cd-terraform-fargate/</link>
       <pubDate>Sun, 26 Dec 2021 12:41:16 -0800</pubDate>
       
-      <guid>https://kevinlong.cloud/posts/my-first-post/</guid>
-      <description>Very cool My first post
-Subheading Do you want to blog? 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26  variable &amp;#34;region&amp;#34; { default = &amp;#34;us-west-2&amp;#34; } variable &amp;#34;myapp_name&amp;#34; { default = &amp;#34;klongapi&amp;#34; } // This DNS zone must already exist in route53 in your AWS account. We reference it, but don&amp;#39;t prosision it with terraform, because it is the one resource that cannot be easily // reprovision after a &amp;#34;terraform destroy&amp;#34; in my case, since my domain is registered with namecheap.</description>
+      <guid>https://kevinlong.cloud/posts/ci-cd-terraform-fargate/</guid>
+      <description>Background This tutorial aims to cover all the basics involved in setting up cloud infrastructure for continuous delivery of a microservice to AWS Fargate, automating everything, with as few manual steps as possible.
+There is a lot of information to cover, and it is by no means exhaustive, for example it is scoped to a single service and does not cover integration strategies.
+I assume you understand the basics of cloud computing and AWS services, what Terraform is, what a docker container is, etc.</description>
     </item>
     
   </channel>

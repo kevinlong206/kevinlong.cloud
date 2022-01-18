@@ -1,3 +1,5 @@
 {{ $dataJ := getJSON "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file")  }}
 {{ $con := base64Decode $dataJ.content }}
 {{ highlight $con (.Get "lang") (.Get "options") }}
+<small><b>source: </b><a href="https://github.com/{{ (.Get "repo") }}/blob/main/{{ (.Get "file")  }}">
+https://github.com/{{ (.Get "repo") }}/blob/main/{{ (.Get "file")  }}</a></b></small>

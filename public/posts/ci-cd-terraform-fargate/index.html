@@ -5,9 +5,9 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.83.1" />
+  <meta name="generator" content="Hugo 0.91.2" />
 
-  <title>My First Post &middot; A Sofware Enginering, S.R.E. and DevOps blog</title>
+  <title>Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate &middot; A Sofware Enginering, S.R.E. and DevOps blog</title>
 
     
 
@@ -168,19 +168,32 @@
 
 
 <div class="header">
-  <h1>My First Post</h1>
+  <h1>Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate</h1>
   <h2></h2>
 </div>
 <div class="content">
-  <h1 id="very-cool">Very cool</h1>
-<p>My first post</p>
-<h2 id="subheading">Subheading</h2>
-<p><em>Do</em> you want to blog?
+  <h1 id="heading"></h1>
+<h2 id="background">Background</h2>
+<p>This tutorial aims to cover all the basics involved in setting up cloud infrastructure for continuous delivery of a microservice to AWS Fargate, automating everything, with as few manual steps as possible.</p>
+<p>There is a lot of information to cover, and it is by no means exhaustive, for example it is scoped to a single service and does not cover integration strategies.</p>
+<p>I assume you understand the basics of cloud computing and AWS services, what Terraform is, what a docker container is, etc.</p>
+<p>It is important to note that while most of the services provisioned by these code examples are eligible for the AWS &ldquo;Free Tier&rdquo;, <em>not</em> all of them are and you <em>will</em> incur some cost if you follow this. The charges should be negligable (dollars?), but this is 100% on you.</p>
+<h3 id="what-is-fargate-though-why-fargate">What is Fargate though? Why Fargate?</h3>
+<p>Fargate is a &ldquo;serverless&rdquo; version of &ldquo;Elastic Container Service&rdquo;, meaning you do not operate or manage any virtual machines (EC2 instances), that is all handled by AWS. I chose it because I had not personally used it before, and understand that it is growing in popularity. My understanding is that for smaller/lower traffic projects, Fargate can have significant cost savings over traditional ECS or Kubernetes, but for larger sites the cost may be higher.</p>
+<h2 id="initial-setup--prerequisites">Initial Setup / Prerequisites</h2>
+<ol>
+<li>AWS account )If it is less than 1 year since creation, most of what is provisioned by the terraform in this tutorial will be in the &ldquo;free tier&rdquo;)</li>
+<li>GitHub account and setup a github repo (or fork mine)</li>
+<li>A domain name or subdomain (and access to set the nameservers for the domain)</li>
+</ol>
+<p>
 
-
+<a href="https://github.com/kevinlong206/profound/blob/main/terraform/00_vars.tf">
+<small><b>https://github.com/kevinlong206/profound/blob/main/terraform/00_vars.tf</b></small>
+</a>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -205,20 +218,18 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;region&#34;</span> {
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;region&#34;</span> {
   default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;us-west-2&#34;</span>
 }
 
 <span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;myapp_name&#34;</span> {
   default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;klongapi&#34;</span>
-}
-
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#66d9ef">This</span> <span style="color:#66d9ef">DNS</span> <span style="color:#66d9ef">zone</span> <span style="color:#66d9ef">must</span> <span style="color:#66d9ef">already</span> <span style="color:#66d9ef">exist</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">route53</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">your</span> <span style="color:#66d9ef">AWS</span> <span style="color:#66d9ef">account</span>. <span style="color:#66d9ef">We</span> <span style="color:#66d9ef">reference</span> <span style="color:#66d9ef">it</span>, <span style="color:#66d9ef">but</span> <span style="color:#66d9ef">don</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#66d9ef">t</span> <span style="color:#66d9ef">prosision</span> <span style="color:#66d9ef">it</span> <span style="color:#66d9ef">with</span> <span style="color:#66d9ef">terraform</span>, <span style="color:#66d9ef">because</span> <span style="color:#66d9ef">it</span> <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">the</span> <span style="color:#66d9ef">one</span> <span style="color:#66d9ef">resource</span> <span style="color:#66d9ef">that</span> <span style="color:#66d9ef">cannot</span> <span style="color:#66d9ef">be</span> <span style="color:#66d9ef">easily</span>
-<span style="color:#960050;background-color:#1e0010">//</span> <span style="color:#66d9ef">reprovision</span> <span style="color:#66d9ef">after</span> <span style="color:#66d9ef">a</span> <span style="color:#e6db74">&#34;terraform destroy&#34;</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">my</span> <span style="color:#66d9ef">case</span>, <span style="color:#66d9ef">since</span> <span style="color:#66d9ef">my</span> <span style="color:#66d9ef">domain</span> <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">registered</span> <span style="color:#66d9ef">with</span> <span style="color:#66d9ef">namecheap</span>.<span style="color:#66d9ef">com</span> <span style="color:#66d9ef">and</span> <span style="color:#66d9ef">requires</span> <span style="color:#66d9ef">I</span> <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">back</span> <span style="color:#66d9ef">and</span> <span style="color:#66d9ef">update</span> <span style="color:#66d9ef">the</span> <span style="color:#66d9ef">nameservers</span> <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> <span style="color:#66d9ef">domain</span> <span style="color:#66d9ef">again</span>.
-
+}<span style="color:#75715e">
+</span><span style="color:#75715e">
+</span><span style="color:#75715e"># This DNS zone must already exist in route53 in your AWS account. 
+</span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;myapp_dnszone&#34;</span> {
   default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;kevinlong.cloud&#34;</span>
 }
