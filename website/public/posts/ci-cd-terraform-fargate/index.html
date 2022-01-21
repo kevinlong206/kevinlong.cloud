@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.91.2" />
 
-  <title>Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate &middot; A Sofware Enginering, S.R.E. and DevOps blog</title>
+  <title>Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate &middot; </title>
 
     
 
@@ -45,10 +45,25 @@
   
 
   
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/androidstudio.min.css">
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+  
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
 
   <link rel="shortcut icon" href="https://kevinlong.cloud/img/favicon.ico" type="image/x-icon" />
 
   
+    
+        <link rel="stylesheet" href="https://kevinlong.cloud/css/my.css">
+    
+  
+  
+    
+        <script src="https://kevinlong.cloud/js/my.js"></script>
+    
   
 
 </head>
@@ -65,9 +80,35 @@
 <div id="menu">
 
   
+  <a class="pure-menu-heading brand" href="/">Kevin Long</a>
+
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contact</a>
+      
+        </li>
       
     </ul>
   </div>
@@ -80,7 +121,9 @@
     
 
     
-
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/_kevin_long" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
     
 
     
@@ -112,7 +155,9 @@
     
 
     
-
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/kevinlongtech" rel="me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+    </li>
     
 
     
@@ -120,7 +165,19 @@
     
 
     
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://reddit.com/user/locusofself" rel="me" target="_blank"><i class="fab fa-reddit-square fa-fw"></i>Reddit</a>
+    </li>
+    
 
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/kevinlong206" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
+    </li>
     
 
     
@@ -175,22 +232,19 @@
   <h1 id="heading"></h1>
 <h2 id="background">Background</h2>
 <p>This tutorial aims to cover all the basics involved in setting up cloud infrastructure for continuous delivery of a microservice to AWS Fargate, automating everything, with as few manual steps as possible.</p>
-<p>There is a lot of information to cover, and it is by no means exhaustive, for example it is scoped to a single service and does not cover integration strategies.</p>
-<p>I assume you understand the basics of cloud computing and AWS services, what Terraform is, what a docker container is, etc.</p>
+<p>There is a lot of information to cover, and it is by no means exhaustive.</p>
+<p>I&rsquo;ll assume you understand the basics of cloud computing and AWS services, what Terraform is, what a docker container is, etc.</p>
 <p>It is important to note that while most of the services provisioned by these code examples are eligible for the AWS &ldquo;Free Tier&rdquo;, <em>not</em> all of them are and you <em>will</em> incur some cost if you follow this. The charges should be negligable (dollars?), but this is 100% on you.</p>
 <h3 id="what-is-fargate-though-why-fargate">What is Fargate though? Why Fargate?</h3>
 <p>Fargate is a &ldquo;serverless&rdquo; version of &ldquo;Elastic Container Service&rdquo;, meaning you do not operate or manage any virtual machines (EC2 instances), that is all handled by AWS. I chose it because I had not personally used it before, and understand that it is growing in popularity. My understanding is that for smaller/lower traffic projects, Fargate can have significant cost savings over traditional ECS or Kubernetes, but for larger sites the cost may be higher.</p>
 <h2 id="initial-setup--prerequisites">Initial Setup / Prerequisites</h2>
 <ol>
-<li>AWS account )If it is less than 1 year since creation, most of what is provisioned by the terraform in this tutorial will be in the &ldquo;free tier&rdquo;)</li>
+<li>AWS account</li>
 <li>GitHub account and setup a github repo (or fork mine)</li>
 <li>A domain name or subdomain (and access to set the nameservers for the domain)</li>
 </ol>
-<p>
 
-<a href="https://github.com/kevinlong206/profound/blob/main/terraform/00_vars.tf">
-<small><b>https://github.com/kevinlong206/profound/blob/main/terraform/00_vars.tf</b></small>
-</a>
+
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -247,7 +301,10 @@
 }</code></pre></td></tr></table>
 </div>
 </div>
-TEST</p>
+<small><b>source: </b><a href="https://github.com/kevinlong206/kevinlong.cloud/blob/main/terraform/terraform-fargate-tutorial/00_vars.tf">
+https://github.com/kevinlong206/kevinlong.cloud/blob/main/terraform/terraform-fargate-tutorial/00_vars.tf</a></b></small>
+
+<h2 id="test">TEST</h2>
 <p>Ok then. Here be go blogging again</p>
 <p>sdsd</p>
 
@@ -262,6 +319,35 @@ TEST</p>
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=Your%20Google%20Analytics%20tracking%20ID"></script>
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'Your Google Analytics tracking ID');
+  }
+</script>
+
+
+
+
+
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="\/\/analytics.example.com\/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId',  2 ]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//analytics.example.com/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
 
 
 

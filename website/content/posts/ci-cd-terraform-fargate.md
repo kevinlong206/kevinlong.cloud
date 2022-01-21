@@ -25,7 +25,7 @@ Fargate is a "serverless" version of "Elastic Container Service", meaning you do
 3. A domain name or subdomain (and access to set the nameservers for the domain)
 
 
-{{<github repo="kevinlong206/profound" file="terraform/00_vars.tf" lang="hcl" options="lineNos=table">}}
+{{<github repo="kevinlong206/kevinlong.cloud" file="terraform/terraform-fargate-tutorial/00_vars.tf" lang="hcl" options="lineNos=table">}}
 
 
 ## TEST

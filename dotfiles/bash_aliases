@@ -1,3 +1,7 @@
+
+# WSL weirdness
+cd ~
+
 ## docker for windows w/wsl ssh stuff
 SSH_ENV="$HOME/.ssh/agent-environment"
 function start_agent {
@@ -57,6 +61,9 @@ alias gl='git log'
 alias gm='git merge'
 alias gr='git rebase'
 alias gi='git rebase -i'
+
+#hugo stuff
+alias hs='cd ~/kevinlong.cloud/website; hugo server -D'
 
 # terminal/shell options
 set -o vi
