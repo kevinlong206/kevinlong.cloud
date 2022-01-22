@@ -8910,7 +8910,7 @@ details[open] summary {
   object-fit: cover; }
 
 .bold-title {
-  font-size: 3rem;
+  font-size: 6rem;
   line-height: 1.2;
   margin-bottom: 0.25em; }
   @media screen and (max-width: 768px) {

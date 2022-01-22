@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "npm install -g postcss postcss-cli autoprefixer &&  hugo --gc --minify -t ../.. -d ../docs -v -b https://blog.kevinlong.cloud/"
+    "build": "npm install -g postcss postcss-cli autoprefixer &&  hugo --gc --minify -t ../.. -d ../docs -v -b https://kevinlong.cloud/"
   },
   "dependencies": {
     "postcss-cli": "^9.1.0"

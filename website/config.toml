@@ -1,4 +1,4 @@
-baseURL                          = "http://kevinlong.cloud"   # Your domain name. Must end with "/"
+baseURL                          = "https://kevinlong.cloud/"   # Your domain name. Must end with "/"
 theme                            = "introduction"
 DefaultContentLanguage           = "en"                    # Default language for multilingual sites
 # disqusshortname                 = ""                     # https://gohugo.io/content-management/comments

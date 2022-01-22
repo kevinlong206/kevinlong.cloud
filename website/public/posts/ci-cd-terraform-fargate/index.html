@@ -1,243 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.92.0" />
-
-  <title>Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate &middot; </title>
-
-    
-
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
-  <!--<![endif]-->
-
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
-  <!--<![endif]-->
-
-  <link rel="stylesheet" href="/css/blackburn.css">
-
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet" type="text/css">
-
-  
-  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
- 
-  
-
-  
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/androidstudio.min.css">
-  <script async src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-  
-  <script async src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js"></script>
-  
-  <script>hljs.initHighlightingOnLoad();</script>
-  
-
-  <link rel="shortcut icon" href="https://kevinlong.cloud/img/favicon.ico" type="image/x-icon" />
-
-  
-    
-        <link rel="stylesheet" href="https://kevinlong.cloud/css/my.css">
-    
-  
-  
-    
-        <script src="https://kevinlong.cloud/js/my.js"></script>
-    
-  
-
-</head>
+<html lang="en-us">
+    <head>
+        
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Software Development, DevOps and SRE">
+<title>
+Infrastructure as Code and Continuous Delivery Using Terraform, Git Hub Actions and Aws Fargate - Kevin Intro Test
+</title>
 
 
-<body>
-<div id="layout">
 
-  
-<a href="#menu" id="menuLink" class="menu-link">
-  
-  <span></span>
-</a>
-<div id="menu">
-
-  
-  <a class="pure-menu-heading brand" href="/">Kevin Long</a>
+        
+        <meta property="og:title" content="Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate - Kevin Intro Test" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Software Development, DevOps and SRE"/>
+<meta property="og:url" content="https://kevinlong.cloud/posts/ci-cd-terraform-fargate/"/>
+<meta property="og:site_name" content="Kevin Intro Test"/>
 
 
-  <div class="pure-menu">
-    <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>About</a>
-      
-        </li>
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contact</a>
-      
-        </li>
-      
-    </ul>
-  </div>
 
-  <div class="pure-menu social">
-  <ul class="pure-menu-list">
 
-    
 
-    
+        
+<link rel="shortcut icon" href="/img/fav.ico">
 
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/_kevin_long" rel="me" target="_blank"><i class="fab fa-twitter-square fa-fw"></i>Twitter</a>
-    </li>
-    
 
-    
+        
 
-    
 
-    
 
-    
 
-    
 
-    
+<link rel="stylesheet" href="/sass/style.sass" integrity="" crossorigin="anonymous" media="screen">
 
-    
 
-    
 
-    
 
-    
 
-    
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/">main</a>
+            
 
-    
+            
 
-    
+            
 
-    
+            
 
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://linkedin.com/in/kevinlongtech" rel="me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
-    </li>
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://reddit.com/user/locusofself" rel="me" target="_blank"><i class="fab fa-reddit-square fa-fw"></i>Reddit</a>
-    </li>
-    
-
-    
-
-    
-
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://github.com/kevinlong206" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
-    </li>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-  </ul>
+            
+            
+        </div>
+    </nav>
+    <hr>
 </div>
 
 
-  <div>
-  <div class="small-print">
-    <small></small>
-  </div>
-  <div class="small-print">
-    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
-    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
-  </div>
-</div>
 
-</div>
+                
+    <div class="container markdown top-pad">
+        
+<h1 id="heading" class="anchor-link"><a href="#heading"></a></h1>
 
-
-  <div id="main">
-
-
-<div class="header">
-  <h1>Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate</h1>
-  <h2></h2>
-</div>
-<div class="content">
-  <h1 id="heading"></h1>
-<h2 id="background">Background</h2>
+<h2 id="background" class="anchor-link"><a href="#background">Background</a></h2>
 <p>This tutorial aims to cover all the basics involved in setting up cloud infrastructure for continuous delivery of a microservice to AWS Fargate, automating everything, with as few manual steps as possible.</p>
 <p>There is a lot of information to cover, and it is by no means exhaustive.</p>
 <p>I&rsquo;ll assume you understand the basics of cloud computing and AWS services, what Terraform is, what a docker container is, etc.</p>
 <p>It is important to note that while most of the services provisioned by these code examples are eligible for the AWS &ldquo;Free Tier&rdquo;, <em>not</em> all of them are and you <em>will</em> incur some cost if you follow this. The charges should be negligable (dollars?), but this is 100% on you.</p>
-<h3 id="what-is-fargate-though-why-fargate">What is Fargate though? Why Fargate?</h3>
+
+<h3 id="what-is-fargate-though-why-fargate" class="anchor-link"><a href="#what-is-fargate-though-why-fargate">What is Fargate though? Why Fargate?</a></h3>
 <p>Fargate is a &ldquo;serverless&rdquo; version of &ldquo;Elastic Container Service&rdquo;, meaning you do not operate or manage any virtual machines (EC2 instances), that is all handled by AWS. I chose it because I had not personally used it before, and understand that it is growing in popularity. My understanding is that for smaller/lower traffic projects, Fargate can have significant cost savings over traditional ECS or Kubernetes, but for larger sites the cost may be higher.</p>
-<h2 id="initial-setup--prerequisites">Initial Setup / Prerequisites</h2>
+
+<h2 id="initial-setup--prerequisites" class="anchor-link"><a href="#initial-setup--prerequisites">Initial Setup / Prerequisites</a></h2>
 <ol>
 <li>AWS account</li>
 <li>GitHub account and setup a github repo (or fork mine)</li>
@@ -245,114 +112,117 @@
 </ol>
 
 
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">25
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;region&#34;</span> {
-  default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;us-west-2&#34;</span>
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;region&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;us-west-2&#34;</span>
 }
 
-<span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;myapp_name&#34;</span> {
-  default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;klongapi&#34;</span>
-}<span style="color:#75715e">
-</span><span style="color:#75715e">
-</span><span style="color:#75715e"># This DNS zone must already exist in route53 in your AWS account. 
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;myapp_dnszone&#34;</span> {
-  default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;kevinlong.cloud&#34;</span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;myapp_name&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;klongapi&#34;</span>
+}<span style="color:#586e75">
+</span><span style="color:#586e75">
+</span><span style="color:#586e75"># This DNS zone must already exist in route53 in your AWS account. 
+</span><span style="color:#586e75"></span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;myapp_dnszone&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;kevinlong.cloud&#34;</span>
 }
 
-<span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;myapp_hostname&#34;</span> {
-  default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;klongapi.kevinlong.cloud&#34;</span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;myapp_hostname&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;klongapi.kevinlong.cloud&#34;</span>
 }
 
-<span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;my_app_dockerimage&#34;</span> {
-  default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;olliefr/docker-gs-ping&#34;</span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;my_app_dockerimage&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;olliefr/docker-gs-ping&#34;</span>
 }
 
-<span style="color:#66d9ef">variable</span> <span style="color:#e6db74">&#34;db_username&#34;</span> {
-  default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rds_user&#34;</span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;db_username&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;rds_user&#34;</span>
 }</code></pre></td></tr></table>
 </div>
 </div>
 <small><b>source: </b><a href="https://github.com/kevinlong206/kevinlong.cloud/blob/main/terraform/terraform-fargate-tutorial/00_vars.tf">
 https://github.com/kevinlong206/kevinlong.cloud/blob/main/terraform/terraform-fargate-tutorial/00_vars.tf</a></b></small>
 
-<h2 id="test">TEST</h2>
+
+<h2 id="test" class="anchor-link"><a href="#test">TEST</a></h2>
 <p>Ok then. Here be go blogging again</p>
 <p>sdsd</p>
 
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
 </div>
 
+<div class="container">
+    <hr>
 </div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            <a href="https://github.com/victoriadrake/hugo-theme-introduction/"><strong>Introduction</strong></a> theme for <a href="http://gohugo.io/">Hugo</a>. Made with <a href="https://victoria.dev"><i class="fa fa-heart"></i> and <i class="fa fa-coffee"></i></a> by open source contributors.
+        </span>
+    
+    </div>
 </div>
-<script src="https://kevinlong.cloud/js/ui.js"></script>
-<script src="https://kevinlong.cloud/js/menus.js"></script>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://kevinlong.cloud/js/bundle.f1741e9868b2f697e71cf8fccfcc12166540999b3d36f8fb9edd0882ba425d55.js" integrity="sha256-8XQemGiy9pfnHPj8z8wSFmVAmZs9Nvj7nt0IgrpCXVU="></script>
 
 
 
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=Your%20Google%20Analytics%20tracking%20ID"></script>
-<script>
-  
-  if (window.location.hostname != "localhost") {
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'Your Google Analytics tracking ID');
-  }
-</script>
-
-
-
-
-
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="\/\/analytics.example.com\/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId',  2 ]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//analytics.example.com/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
-
-
-
-
-
-</body>
+        
+        
+        
+        
+    </body>
 </html>
-
