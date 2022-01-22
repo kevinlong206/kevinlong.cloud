@@ -1,0 +1,6 @@
+[submodule "website/themes/introduction"]
+	path = website/themes/introduction
+	url = https://github.com/victoriadrake/hugo-theme-introduction.git
+[submodule "website/themes/mini"]
+	path = website/themes/mini
+	url = https://github.com/nodejh/hugo-theme-mini.git

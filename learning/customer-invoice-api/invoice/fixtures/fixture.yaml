@@ -1,0 +1,62 @@
+- model: invoice.service
+  pk: 1
+  fields:
+    name: GenericCompute
+    price_per_unit: 2.5
+
+- model: invoice.service
+  pk: 2
+  fields:
+    name: DataBaseHosting
+    price_per_unit: 1.5
+
+- model: invoice.service
+  pk: 3
+  fields:
+    name: IPAddress
+    price_per_unit: 0.4
+
+
+
+- model: invoice.customer
+  pk: 1
+  fields:
+    name: "ACME Inc"
+
+- model: invoice.customer
+  pk: 2
+  fields:
+    name: 'Foo Ltd'
+
+
+
+- model: invoice.invoicelineitem
+  fields:
+    customer_id: 1
+    service: 2
+    units_consumed: 4
+    unique_charge_id: 3135F216-5533-4C18-882A-F96C09CFC73C
+
+- model: invoice.invoicelineitem
+  fields:
+    customer_id: 2
+    service: 1
+    units_consumed: 7
+    unique_charge_id: A2D924FA-CBB1-41E3-98D4-023CDFED04F5
+
+
+- model: invoice.invoicelineitem
+  fields:
+    customer_id: 1
+    service: 3
+    units_consumed: 6
+    unique_charge_id: 61778A81-AD2B-49B4-89D4-C5B2B23DE700
+
+
+
+
+
+
+
+
+
