@@ -1,140 +1,245 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="chrome=1">
-<meta name=HandheldFriendly content="True">
-<meta name=MobileOptimized content="320">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=referrer content="no-referrer">
-<meta name=description content="Software Development, DevOps and SRE">
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Software Development, DevOps and Site Reliability Engineering">
 <title>
-Infrastructure as Code and Continuous Delivery Using Terraform, Git Hub Actions and Aws Fargate - Kevin Intro Test
+Infrastructure as Code and Continuous Delivery Using Terraform, Git Hub Actions and Aws Fargate - Kevin&rsquo;s SRE Blog
 </title>
-<meta property="og:title" content="Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate - Kevin Intro Test">
-<meta property="og:type" content="website">
-<meta property="og:description" content="Software Development, DevOps and SRE">
-<meta property="og:url" content="https://kevinlong.cloud/posts/ci-cd-terraform-fargate/">
-<meta property="og:site_name" content="Kevin Intro Test">
-<link rel="shortcut icon" href=/img/fav.ico>
-<link rel=stylesheet href=/css/main.min.a2d7ffdc1cbf4eabb0db2f45b57d25471d4d7dfd0e17f6a590482eab3251a64f.css integrity="sha256-otf/3By/Tquw2y9FtX0lRx1Nff0OF/alkEguqzJRpk8=" crossorigin=anonymous media=screen>
-</head>
-<body>
-<section id=top class=section>
-<div class="container hero fade-in one">
-<h1 class="bold-title is-1">Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate</h1>
+
+
+
+        
+        <meta property="og:title" content="Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate - Kevin&rsquo;s SRE Blog" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Software Development, DevOps and Site Reliability Engineering"/>
+<meta property="og:url" content="https://kevinlong.cloud/posts/ci-cd-terraform-fargate/"/>
+<meta property="og:site_name" content="Kevin&rsquo;s SRE Blog"/>
+
+
+
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.a2d7ffdc1cbf4eabb0db2f45b57d25471d4d7dfd0e17f6a590482eab3251a64f.css" integrity="sha256-otf/3By/Tquw2y9FtX0lRx1Nff0OF/alkEguqzJRpk8=" crossorigin="anonymous" media="screen">
+
+
+
+
+    <link rel="stylesheet" href="/foo.css" integrity="" crossorigin="anonymous" media="screen">
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero ">
+                
+                <h1 class="bold-title is-1">Infrastructure as Code and Continuous Delivery using Terraform, GitHub Actions and AWS Fargate</h1>
+                
+            </div>
+            
+            <div class="section ">
+                
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                Home
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                Blog
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
 </div>
-<div class="section fade-in two">
-<div class=container>
-<hr>
-<nav class=navbar role=navigation aria-label="main navigation">
-<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-</a>
-<div class=navbar-menu id=navMenu>
-<a class=navbar-item href=/>main</a>
-</div>
-</nav>
-<hr>
-</div>
-<div class="container markdown top-pad">
-<h1 id=heading class=anchor-link><a href=#heading></a></h1>
-<h2 id=background class=anchor-link><a href=#background>Background</a></h2>
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h1 id="heading" class="anchor-link"><a href="#heading"></a></h1>
+
+<h2 id="background" class="anchor-link"><a href="#background">Background</a></h2>
 <p>This tutorial aims to cover all the basics involved in setting up cloud infrastructure for continuous delivery of a microservice to AWS Fargate, automating everything, with as few manual steps as possible.</p>
 <p>There is a lot of information to cover, and it is by no means exhaustive.</p>
 <p>I&rsquo;ll assume you understand the basics of cloud computing and AWS services, what Terraform is, what a docker container is, etc.</p>
 <p>It is important to note that while most of the services provisioned by these code examples are eligible for the AWS &ldquo;Free Tier&rdquo;, <em>not</em> all of them are and you <em>will</em> incur some cost if you follow this. The charges should be negligable (dollars?), but this is 100% on you.</p>
-<h3 id=what-is-fargate-though-why-fargate class=anchor-link><a href=#what-is-fargate-though-why-fargate>What is Fargate though? Why Fargate?</a></h3>
+
+<h3 id="what-is-fargate-though-why-fargate" class="anchor-link"><a href="#what-is-fargate-though-why-fargate">What is Fargate though? Why Fargate?</a></h3>
 <p>Fargate is a &ldquo;serverless&rdquo; version of &ldquo;Elastic Container Service&rdquo;, meaning you do not operate or manage any virtual machines (EC2 instances), that is all handled by AWS. I chose it because I had not personally used it before, and understand that it is growing in popularity. My understanding is that for smaller/lower traffic projects, Fargate can have significant cost savings over traditional ECS or Kubernetes, but for larger sites the cost may be higher.</p>
-<h2 id=initial-setup--prerequisites class=anchor-link><a href=#initial-setup--prerequisites>Initial Setup / Prerequisites</a></h2>
+
+<h2 id="initial-setup--prerequisites" class="anchor-link"><a href="#initial-setup--prerequisites">Initial Setup / Prerequisites</a></h2>
 <ol>
 <li>AWS account</li>
 <li>GitHub account and setup a github repo (or fork mine)</li>
 <li>A domain name or subdomain (and access to set the nameservers for the domain)</li>
 </ol>
-<div class=highlight><div style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">15
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">16
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">18
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">19
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">20
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">21
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">22
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">23
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">24
-</span><span style="margin-right:.4em;padding:0 .4em;color:#495050">25
+
+
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">25
 </span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-hcl data-lang=hcl><span style=color:#719e07>variable</span> <span style=color:#2aa198>&#34;region&#34;</span> {
-  default <span style=color:#719e07>=</span> <span style=color:#2aa198>&#34;us-west-2&#34;</span>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hcl" data-lang="hcl"><span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;region&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;us-west-2&#34;</span>
 }
 
-<span style=color:#719e07>variable</span> <span style=color:#2aa198>&#34;myapp_name&#34;</span> {
-  default <span style=color:#719e07>=</span> <span style=color:#2aa198>&#34;klongapi&#34;</span>
-}<span style=color:#586e75>
-</span><span style=color:#586e75>
-</span><span style=color:#586e75># This DNS zone must already exist in route53 in your AWS account. 
-</span><span style=color:#586e75></span>
-<span style=color:#719e07>variable</span> <span style=color:#2aa198>&#34;myapp_dnszone&#34;</span> {
-  default <span style=color:#719e07>=</span> <span style=color:#2aa198>&#34;kevinlong.cloud&#34;</span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;myapp_name&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;klongapi&#34;</span>
+}<span style="color:#586e75">
+</span><span style="color:#586e75">
+</span><span style="color:#586e75"># This DNS zone must already exist in route53 in your AWS account. 
+</span><span style="color:#586e75"></span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;myapp_dnszone&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;kevinlong.cloud&#34;</span>
 }
 
-<span style=color:#719e07>variable</span> <span style=color:#2aa198>&#34;myapp_hostname&#34;</span> {
-  default <span style=color:#719e07>=</span> <span style=color:#2aa198>&#34;klongapi.kevinlong.cloud&#34;</span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;myapp_hostname&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;klongapi.kevinlong.cloud&#34;</span>
 }
 
-<span style=color:#719e07>variable</span> <span style=color:#2aa198>&#34;my_app_dockerimage&#34;</span> {
-  default <span style=color:#719e07>=</span> <span style=color:#2aa198>&#34;olliefr/docker-gs-ping&#34;</span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;my_app_dockerimage&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;olliefr/docker-gs-ping&#34;</span>
 }
 
-<span style=color:#719e07>variable</span> <span style=color:#2aa198>&#34;db_username&#34;</span> {
-  default <span style=color:#719e07>=</span> <span style=color:#2aa198>&#34;rds_user&#34;</span>
+<span style="color:#719e07">variable</span> <span style="color:#2aa198">&#34;db_username&#34;</span> {
+  default <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;rds_user&#34;</span>
 }</code></pre></td></tr></table>
 </div>
 </div>
-<small><b>source: </b><a href=https://github.com/kevinlong206/kevinlong.cloud/blob/main/terraform/terraform-fargate-tutorial/00_vars.tf>
+<small><b>source: </b><a href="https://github.com/kevinlong206/kevinlong.cloud/blob/main/terraform/terraform-fargate-tutorial/00_vars.tf">
 https://github.com/kevinlong206/kevinlong.cloud/blob/main/terraform/terraform-fargate-tutorial/00_vars.tf</a></b></small>
-<h2 id=test class=anchor-link><a href=#test>TEST</a></h2>
+
+
+<h2 id="test" class="anchor-link"><a href="#test">TEST</a></h2>
 <p>Ok then. Here be go blogging again</p>
 <p>sdsd</p>
-</div>
-<div class=container>
-<hr>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
 </div>
 <div class="container has-text-centered top-pad">
-<a href=#top>
-<i class="fa fa-arrow-up"></i>
-</a>
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
 </div>
-<div class=container>
-<hr>
+
+<div class="container">
+    <hr>
 </div>
-<div class=section id=footer>
-<div class="container has-text-centered">
-<span class=footer-text>
-<a href=https://github.com/victoriadrake/hugo-theme-introduction/><strong>Introduction</strong></a> theme for <a href=http://gohugo.io/>Hugo</a>. Made with <a href=https://victoria.dev><i class="fa fa-heart"></i> and <i class="fa fa-coffee"></i></a> by open source contributors.
-</span>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        Static site generated with Hugo and hosted at Netlify
+    
+    </div>
 </div>
-</div>
-</div>
-</section>
-<script src=https://kevinlong.cloud/js/bundle.f1741e9868b2f697e71cf8fccfcc12166540999b3d36f8fb9edd0882ba425d55.js integrity="sha256-8XQemGiy9pfnHPj8z8wSFmVAmZs9Nvj7nt0IgrpCXVU="></script>
-</body>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://kevinlong.cloud/js/bundle.f1741e9868b2f697e71cf8fccfcc12166540999b3d36f8fb9edd0882ba425d55.js" integrity="sha256-8XQemGiy9pfnHPj8z8wSFmVAmZs9Nvj7nt0IgrpCXVU="></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-PQBXM7VS9W', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+        
+        
+        
+        
+    </body>
 </html>

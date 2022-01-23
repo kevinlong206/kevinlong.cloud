@@ -2,6 +2,12 @@
 # WSL weirdness
 cd ~
 
+# npm
+
+NPM_PACKAGES="${HOME}/.npm-packages"
+NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+
+
 ## docker for windows w/wsl ssh stuff
 SSH_ENV="$HOME/.ssh/agent-environment"
 function start_agent {
@@ -43,7 +49,7 @@ alias px='ps aux'
 # nvim
 alias n='nvim'
 alias v='nvim'
-
+alias vim='nvim'
 #alias related
 alias al='nvim ~/.bash_aliases && echo sourcing ~/.bash_aliases && source ~/.bash_aliases'
 
