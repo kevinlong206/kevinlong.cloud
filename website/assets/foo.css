@@ -1,0 +1,10 @@
+.bold-title {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 0.25em;
+}
+
+.hero.is-fullheight .hero-body, .hero.is-fullheight-with-navbar .hero-body {
+    align-items: center;
+    display: flex;
+}
